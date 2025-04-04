@@ -21,12 +21,18 @@ const onePlayerGame = (numRound, sidedDice) => {
         roundCounter ++
         rollArray.push(roll)
     }
-    return rollArray
+    
+    let rollNum = 1
+
+    for (let index = 0; index < rollArray.length; index++) {
+        console.log(`ROLL ${rollNum}: ${rollArray[index]}`)
+        rollNum ++
+    }
 }
 
 rl.question(`Enter number of games: `, num => {
     num = parseInt(num)
-    console.log(onePlayerGame(num, 6))
+    onePlayerGame(num, 6)
     rl.close();
   });
 
