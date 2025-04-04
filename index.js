@@ -1,8 +1,8 @@
-// const readline = require('node:readline');
-// const rl = readline.createInterface({
-//   input: process.stdin,
-//   output: process.stdout,
-// });
+const readline = require('node:readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
 const onePlayerGame = (numRound, sidedDice) => {
 
@@ -81,11 +81,23 @@ const twoPlayerGame = (numRound, target, sidedDice) => {
     } else {
         console.log(`Player Two wins the game!`)
     }
-
-    return `PLAYER ONE: ${playerOneWins} WINS | PLAYER TWO: ${playerTwoWins} WINS | ${drawCount} DRAWS`
+    console.log(`PLAYER ONE: ${playerOneWins} WINS | PLAYER TWO: ${playerTwoWins} WINS | ${drawCount} DRAWS`)
 }
 
 
+rl.question(`Enter number of players: `, playerNum => {
+    if (playerNum == 2) {
+        rl.question(`Enter number of rounds: `, numRound => {
+        twoPlayerGame(parseInt(numRound), 18, 6)
+        rl.close();
+    })}
+    else if (playerNum == 1) {
+        rl.question(`Enter number of rounds: `, numRound => {
+        onePlayerGame(parseInt(numRound), 6)
+        rl.close();
+        })
+    }
+ //   rl.close();
+  });
 
-
-console.log(twoPlayerGame(8, 18, 6))
+// console.log(twoPlayerGame(8, 18, 6))
