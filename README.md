@@ -1,6 +1,6 @@
 SUMMARY
 
-This tool allows one or two players to roll a dice - with a given number of sides - a given number of times. The one player game is a simple randomised roll generator, while the two player game sets a target number and rolls a dice for each player wherein the winner is the player whose roll is closest to the target.
+This tool allows one or two players to roll a dice - with a given number of faces - a given number of times. The one player game is a simple randomised roll generator, while the two player game sets a target number and rolls a dice for each player wherein the winner is the player whose roll is closest to the target.
 
 The tool uses the readline function to accept the following input from the command line:
 
