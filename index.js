@@ -88,16 +88,22 @@ const twoPlayerGame = (numRound, target, sidedDice) => {
 rl.question(`Enter number of players: `, playerNum => {
     if (playerNum == 2) {
         rl.question(`Enter number of rounds: `, numRound => {
-        twoPlayerGame(parseInt(numRound), 18, 6)
-        rl.close();
-    })}
+            rl.question(`Enter target number: `, target => {
+                    rl.question(`Enter number of sides on the die: `, sidedDice => {
+                        twoPlayerGame(parseInt(numRound), parseInt(target), parseInt(sidedDice))
+                    rl.close();}
+                )}
+            )}
+        )}
+
     else if (playerNum == 1) {
         rl.question(`Enter number of rounds: `, numRound => {
-        onePlayerGame(parseInt(numRound), 6)
+            rl.question(`Enter number of sides on the die: `, sidedDice => {
+                onePlayerGame(parseInt(numRound), parseInt(sidedDice))
         rl.close();
-        })
-    }
- //   rl.close();
-  });
+            })
+        }
+    )}
+})
 
 // console.log(twoPlayerGame(8, 18, 6))
