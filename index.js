@@ -1,16 +1,21 @@
+const { type } = require('node:os');
 const readline = require('node:readline');
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
+// ------------------------------
+
 const onePlayerGame = (numRound, sidedDice) => {
 
     if (!numRound || numRound < 0 || typeof(numRound) === "string") {
         return "Invalid entry"
-    } else if( sidedDice < 4) { // we assume that the die used has at least four faces
+    } else if(sidedDice < 4) { // we assume that the die used has at least four faces
         return "Invalid die"
-    } 
+    } else if (!sidedDice) {
+        sidedDice = 6 // default to a six sided die
+    }
     
     let roundCounter = 0
     let rollArray = [];
@@ -30,17 +35,6 @@ const onePlayerGame = (numRound, sidedDice) => {
     }
 }
 
-// rl.question(`Enter number of rolls: `, num => {
-//     num = parseInt(num)
-//     onePlayerGame(num, 6)
-//     rl.close();
-//   });
-
-// console.log(onePlayerGame(10, 6))
-// console.log(onePlayerGame(15, 30))
-// console.log(onePlayerGame("Hi", 6))
-// console.log(onePlayerGame(10, 3))
-
 // ------------------------------
 
 const twoPlayerGame = (numRound, target, sidedDice) => {
@@ -51,11 +45,23 @@ const twoPlayerGame = (numRound, target, sidedDice) => {
     let playerTwoWins = 0;
     let drawCount = 0
 
+    if (!numRound || numRound < 0 || typeof(numRound) === "string") {
+        return console.log("Invalid entry: input must be a number")
+    } else if (!target || target < minRoll || target > sidedDice || typeof(target) === "string") {
+        return console.log("Invalid target: target must be between 1 and the number of sides on the die")
+    } else if(sidedDice < 4) { // we assume that the die used has at least four faces
+        return console.log("Invalid die: a die must have at least four sides")
+    } else if (!sidedDice || typeof(sidedDice) !== "number") {
+        sidedDice = 6 // default to a six sided die
+    }
+
     console.log(`Target: ${target} \n`)
 
     while(roundCounter < numRound) {
+
         let playerOneRoll = Math.floor(Math.random() * (sidedDice - minRoll + 1) + minRoll)
         let playerTwoRoll = Math.floor(Math.random() * (sidedDice - minRoll + 1) + minRoll)
+
         if (Math.abs(playerOneRoll - target) < Math.abs(playerTwoRoll - target)) {
             console.log(`ROUND ${(roundCounter) + 1}: Player One rolled ${playerOneRoll} and Player Two rolled ${playerTwoRoll}`)
             console.log('Player One wins the round \n')
@@ -84,6 +90,7 @@ const twoPlayerGame = (numRound, target, sidedDice) => {
     console.log(`PLAYER ONE: ${playerOneWins} WINS | PLAYER TWO: ${playerTwoWins} WINS | ${drawCount} DRAWS`)
 }
 
+// ------------------------------
 
 rl.question(`Enter number of players: `, playerNum => {
     if (playerNum == 2) {
@@ -91,19 +98,19 @@ rl.question(`Enter number of players: `, playerNum => {
             rl.question(`Enter target number: `, target => {
                     rl.question(`Enter number of sides on the die: `, sidedDice => {
                         twoPlayerGame(parseInt(numRound), parseInt(target), parseInt(sidedDice))
-                    rl.close();}
-                )}
-            )}
-        )}
+        rl.close();}
+        )})})
+    }
 
     else if (playerNum == 1) {
         rl.question(`Enter number of rounds: `, numRound => {
             rl.question(`Enter number of sides on the die: `, sidedDice => {
                 onePlayerGame(parseInt(numRound), parseInt(sidedDice))
         rl.close();
-            })
-        }
-    )}
+        })})
+    }
+    else {
+        console.log("Invalid entry: this game supports one or two players only")
+        rl.close()
+    }
 })
-
-// console.log(twoPlayerGame(8, 18, 6))
