@@ -1,16 +1,14 @@
 const onePlayerGame = (numRound, sidedDice) => {
 
-    // for (let i =0; i <= numRound; i++) {
+    let roundCounter = 0
+    let rollArray = [];
 
-    // }
-    Math.floor(Math.random() * sidedDice)
-
-    // while(numRound >= 0) {
-    //     Math.floor(Math.random() * sidedDice)
-    //     if(sided) {}
-
-    // }
-
+    while(roundCounter <= numRound) {
+        let roll = Math.floor(Math.random() * sidedDice)
+        roundCounter ++
+        rollArray.push(roll)
+    }
+    return rollArray
 }
 
 console.log(onePlayerGame(5, 6))
