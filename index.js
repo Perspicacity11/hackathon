@@ -43,37 +43,49 @@ const onePlayerGame = (numRound, sidedDice) => {
 
 // ------------------------------
 
-const twoPlayerGame = (numRound, target) => {
+const twoPlayerGame = (numRound, target, sidedDice) => {
 
-    let sidedDice = 6;
     let minRoll = 1;
     let roundCounter = 0
     let playerOneWins = 0;
     let playerTwoWins = 0;
     let drawCount = 0
 
+    console.log(`Target: ${target} \n`)
+
     while(roundCounter < numRound) {
         let playerOneRoll = Math.floor(Math.random() * (sidedDice - minRoll + 1) + minRoll)
         let playerTwoRoll = Math.floor(Math.random() * (sidedDice - minRoll + 1) + minRoll)
-        // checks the difference between player1 and player2
         if (Math.abs(playerOneRoll - target) < Math.abs(playerTwoRoll - target)) {
-            console.log('Player One wins')
+            console.log(`ROUND ${(roundCounter) + 1}: Player One rolled ${playerOneRoll} and Player Two rolled ${playerTwoRoll}`)
+            console.log('Player One wins the round \n')
             playerOneWins ++
         }
         else if (playerOneRoll === playerTwoRoll){
-            console.log('Draw')
+            console.log(`ROUND ${(roundCounter) + 1}: Player One rolled ${playerOneRoll} and Player Two rolled ${playerTwoRoll}`)
+            console.log('Draw \n')
             drawCount ++
         }
         else {
-            console.log('Player Two wins')
+            console.log(`ROUND ${(roundCounter) + 1}: Player One rolled ${playerOneRoll} and Player Two rolled ${playerTwoRoll}`)
+            console.log('Player Two wins the round \n')
             playerTwoWins ++
         }
         roundCounter ++
     }
-    return `PLAYER ONE: ${playerOneWins} WINS | PLAYER TWO: ${playerOneWins} WINS | ${drawCount} DRAWS`
+
+    if (playerOneWins > playerTwoWins) {
+        console.log(`Player One wins the game!`)
+    } else if (playerOneWins === playerTwoWins) {
+        console.log(`The game is a draw!`)
+    } else {
+        console.log(`Player Two wins the game!`)
+    }
+
+    return `PLAYER ONE: ${playerOneWins} WINS | PLAYER TWO: ${playerTwoWins} WINS | ${drawCount} DRAWS`
 }
 
 
 
 
-console.log(twoPlayerGame(8, 18))
+console.log(twoPlayerGame(8, 18, 6))
