@@ -24,3 +24,12 @@ v2: two player
 - Function for rolling a six-sided dice, and whoever of two players gets the closest number to the target on their roll, wins the round
 - Increment a 'rounds won' counter
 - Later: add functionality to use different dice (with more faces), and a desired number of rounds
+
+Both players using the same command line
+
+Steps:
+- Call the function, input the number of rounds and the target number
+- Player one rolls, save the score
+- Player two rolls, save the score
+- Function determines who got closer to the target, iterates a score count for the - winning player
+- Overall winner is the player that has the most winning rolls

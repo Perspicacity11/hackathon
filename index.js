@@ -1,8 +1,8 @@
-const readline = require('node:readline');
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+// const readline = require('node:readline');
+// const rl = readline.createInterface({
+//   input: process.stdin,
+//   output: process.stdout,
+// });
 
 const onePlayerGame = (numRound, sidedDice) => {
 
@@ -50,6 +50,7 @@ const twoPlayerGame = (numRound, target) => {
     let roundCounter = 0
     let playerOneWins = 0;
     let playerTwoWins = 0;
+    let drawCount = 0
 
     while(roundCounter < numRound) {
         let playerOneRoll = Math.floor(Math.random() * (sidedDice - minRoll + 1) + minRoll)
@@ -59,16 +60,20 @@ const twoPlayerGame = (numRound, target) => {
             console.log('Player One wins')
             playerOneWins ++
         }
+        else if (playerOneRoll === playerTwoRoll){
+            console.log('Draw')
+            drawCount ++
+        }
         else {
             console.log('Player Two wins')
             playerTwoWins ++
         }
         roundCounter ++
     }
-    return `PLAYER ONE: ${playerOneWins} WINS | PLAYER TWO: ${playerOneWins}`
+    return `PLAYER ONE: ${playerOneWins} WINS | PLAYER TWO: ${playerOneWins} WINS | ${drawCount} DRAWS`
 }
 
 
 
 
-twoPlayerGame(5, 8)
+console.log(twoPlayerGame(8, 18))
