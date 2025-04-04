@@ -1,3 +1,4 @@
+const { parse } = require('node:path');
 const readline = require('node:readline');
 const rl = readline.createInterface({
   input: process.stdin,
@@ -113,3 +114,15 @@ rl.question(`Enter number of players: `, playerNum => {
         rl.close()
     }
 })
+// Gets information from the index to start the game
+const getInfo = () => {
+    const numPlayers = document.getElementById("numPlayers").submit()
+    const sidedDice = document.getElementById("").submit()
+    const target = document.getElementById("target").submit()
+
+    if (parseInt(numPlayers) === 1) {
+        onePlayerGame()
+    } else {
+        twoPlayerGame()
+    }
+}
