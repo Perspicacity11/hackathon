@@ -43,9 +43,17 @@ const onePlayerGame = (numRound, sidedDice) => {
 
 // ------------------------------
 
-const twoPlayerGame = (numRound, target) => {
+const twoPlayerGame = (numRound, target, sidedDice) => {
 
-    let sidedDice = 6;
+    // Test conditions for valid input
+    if (!numRound || numRound < 0 || typeof(numRound) === "string") {
+        return "Invalid entry"
+    } else if( sidedDice < 4) { // we assume that the die used has at least four faces
+        return "Invalid die"
+    } else if (!target || target < 0 || typeof(target) === "string") {
+        return "Invalid entry"
+    }
+
     let minRoll = 1;
     let roundCounter = 0
     let playerOneWins = 0;
@@ -70,10 +78,19 @@ const twoPlayerGame = (numRound, target) => {
         }
         roundCounter ++
     }
-    return `PLAYER ONE: ${playerOneWins} WINS | PLAYER TWO: ${playerOneWins} WINS | ${drawCount} DRAWS`
+
+    if (playerOneWins > playerTwoWins) {
+        return `PLAYER ONE: ${playerOneWins} WINS | PLAYER TWO: ${playerOneWins} WINS | ${drawCount} DRAWS | PLAYER ONE WINS`
+    }
+    else if (playerOneWins < playerTwoWins) {
+        return `PLAYER ONE: ${playerOneWins} WINS | PLAYER TWO: ${playerOneWins} WINS | ${drawCount} DRAWS | PLAYER TWO WINS`
+    }
+    else {
+        return `PLAYER ONE: ${playerOneWins} WINS | PLAYER TWO: ${playerOneWins} WINS | ${drawCount} DRAWS | PLAYERS DRAW`
+    }
 }
 
 
 
 
-console.log(twoPlayerGame(8, 18))
+console.log(twoPlayerGame(8, 18, 6))
