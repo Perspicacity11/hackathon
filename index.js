@@ -1,4 +1,3 @@
-const { type } = require('node:os');
 const readline = require('node:readline');
 const rl = readline.createInterface({
   input: process.stdin,
@@ -49,10 +48,10 @@ const twoPlayerGame = (numRound, target, sidedDice) => {
     }
 
     let minRoll = 1;
-    let roundCounter = 0
+    let roundCounter = 0;
     let playerOneWins = 0;
     let playerTwoWins = 0;
-    let drawCount = 0
+    let drawCount = 0;
 
     if (!numRound || numRound < 0 || typeof(numRound) === "string") {
         return console.log("Invalid entry: input must be a number")
