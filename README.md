@@ -1,4 +1,4 @@
-Summary
+SUMMARY
 
 This tool allows one or two players to roll a dice - with a given number of sides - a given number of times. The one player game is a simple randomised roll generator, while the two player game sets a target number and rolls a dice for each player wherein the winner is the player whose roll is closest to the target.
 
@@ -23,6 +23,16 @@ To initiate the game, run this code in the command line:
 npm run play
 ```
 
+BUGS:
+- Input validation does not break out of the conditional when it recieves an incorrect input, only throws the error after all the inputs are recieved
+
+
+POTENTIAL BUILDS
+
+- One potential new function would be to allow the game to accept any number of players, within a reasonable range. We would expect that the tool could dynamically instantiate the Player(x)roll variable - which would probably need to be constructed as a class - according to input given by the user, and then render the scores for all of those players for that round in the console, ultimately determining a winner across the full number of players and rounds
+
+---------------------------------------
+NOTES
 ---------------------------------------
 
 Roll the dice v1: one player
