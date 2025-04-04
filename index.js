@@ -8,9 +8,9 @@ const onePlayerGame = (numRound, sidedDice) => {
 
     if (!numRound || numRound < 0 || typeof(numRound) === "string") {
         return "Invalid entry"
-    } else if( sidedDice < 4) {
+    } else if( sidedDice < 4) { // we assume that the die used has at least four faces
         return "Invalid die"
-    } // we assume that the die used has at least four faces
+    } 
     
     let roundCounter = 0
     let rollArray = [];
@@ -30,17 +30,45 @@ const onePlayerGame = (numRound, sidedDice) => {
     }
 }
 
-rl.question(`Enter number of games: `, num => {
-    num = parseInt(num)
-    onePlayerGame(num, 6)
-    rl.close();
-  });
+// rl.question(`Enter number of rolls: `, num => {
+//     num = parseInt(num)
+//     onePlayerGame(num, 6)
+//     rl.close();
+//   });
 
 // console.log(onePlayerGame(10, 6))
 // console.log(onePlayerGame(15, 30))
 // console.log(onePlayerGame("Hi", 6))
 // console.log(onePlayerGame(10, 3))
 
+// ------------------------------
+
+const twoPlayerGame = (numRound, target) => {
+
+    let sidedDice = 6;
+    let minRoll = 1;
+    let roundCounter = 0
+    let playerOneWins = 0;
+    let playerTwoWins = 0;
+
+    while(roundCounter < numRound) {
+        let playerOneRoll = Math.floor(Math.random() * (sidedDice - minRoll + 1) + minRoll)
+        let playerTwoRoll = Math.floor(Math.random() * (sidedDice - minRoll + 1) + minRoll)
+        // checks the difference between player1 and player2
+        if (Math.abs(playerOneRoll - target) < Math.abs(playerTwoRoll - target)) {
+            console.log('Player One wins')
+            playerOneWins ++
+        }
+        else {
+            console.log('Player Two wins')
+            playerTwoWins ++
+        }
+        roundCounter ++
+    }
+    return `PLAYER ONE: ${playerOneWins} WINS | PLAYER TWO: ${playerOneWins}`
+}
 
 
 
+
+twoPlayerGame(5, 8)
