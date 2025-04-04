@@ -38,15 +38,6 @@ const onePlayerGame = (numRound, sidedDice) => {
 
 const twoPlayerGame = (numRound, target, sidedDice) => {
 
-    // Test conditions for valid input
-    if (!numRound || numRound < 0 || typeof(numRound) === "string") {
-        return "Invalid entry"
-    } else if( sidedDice < 4) { // we assume that the die used has at least four faces
-        return "Invalid die"
-    } else if (!target || target < 0 || typeof(target) === "string") {
-        return "Invalid entry"
-    }
-
     let minRoll = 1;
     let roundCounter = 0;
     let playerOneWins = 0;
@@ -89,14 +80,13 @@ const twoPlayerGame = (numRound, target, sidedDice) => {
     }
 
     if (playerOneWins > playerTwoWins) {
-        return `PLAYER ONE: ${playerOneWins} WINS | PLAYER TWO: ${playerOneWins} WINS | ${drawCount} DRAWS | PLAYER ONE WINS`
+        console.log(`Player One wins the game!`)
+    } else if (playerOneWins === playerTwoWins) {
+        console.log(`The game is a draw!`)
+    } else {
+        console.log(`Player Two wins the game!`)
     }
-    else if (playerOneWins < playerTwoWins) {
-        return `PLAYER ONE: ${playerOneWins} WINS | PLAYER TWO: ${playerOneWins} WINS | ${drawCount} DRAWS | PLAYER TWO WINS`
-    }
-    else {
-        return `PLAYER ONE: ${playerOneWins} WINS | PLAYER TWO: ${playerOneWins} WINS | ${drawCount} DRAWS | PLAYERS DRAW`
-    }
+    console.log(`PLAYER ONE: ${playerOneWins} WINS | PLAYER TWO: ${playerTwoWins} WINS | ${drawCount} DRAWS`)
 }
 
 // ------------------------------
@@ -111,6 +101,15 @@ rl.question(`Enter number of players: `, playerNum => {
         )})})
     }
 
-
-console.log(twoPlayerGame(8, 18, 6))
+    else if (playerNum == 1) {
+        rl.question(`Enter number of rounds: `, numRound => {
+            rl.question(`Enter number of sides on the die: `, sidedDice => {
+                onePlayerGame(parseInt(numRound), parseInt(sidedDice))
+        rl.close();
+        })})
+    }
+    else {
+        console.log("Invalid entry: this game supports one or two players only")
+        rl.close()
+    }
 })
